@@ -22,11 +22,16 @@ public class Reader {
     @Column(name = "last_name")
     private String lastName;
 
-//    @OneToMany(mappedBy = "owner")
-//    private List<Book> books;
+    @OneToOne //(mappedBy = "reader")
+    @JoinColumn(name = "id", referencedColumnName = "reader_id")
+    private Issue issue;
 
     public Reader(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+    @Override
+    public String toString() {
+        return "Id: " + id + " Reader: " + firstName + " " + lastName;
     }
 }

@@ -18,10 +18,16 @@ public class Book {
     @Column(name = "title")
     private String title;
 
+    @OneToOne//(mappedBy = "book")
+    @JoinColumn(name = "id", referencedColumnName = "book_id")
+    private Issue issue;
 
     public Book(String title) {
         this.title = title;
     }
 
-
+    @Override
+    public String toString() {
+        return "Id: " + id + " Title: " + title;
+    }
 }

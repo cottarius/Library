@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reader Table</title>
+</head>
+<body>
+
+<table>
+    <caption><b>Полный список читателей</b></caption>
+    <tr>
+        <td>Id</td>
+        <th>Имя</th>
+        <th>Фамилия</th>
+    </tr>
+    <tr th:each="reader: ${readers}">
+        <td th:text="${reader.getId()}"></td>
+        <td th:text="${reader.getFirstName()}"></td>
+        <td th:text="${reader.getLastName()}"></td>
+    </tr>
+</table>
+
+<style>
+    table {
+        border: 3px solid black;
+        border-collapse: collapse;
+        width: 50%;
+    }
+    td {
+        border: 3px solid black;
+    }
+    th {
+        border: 3px solid black;
+    }
+
+</style>
+
+</body>
+</html>
