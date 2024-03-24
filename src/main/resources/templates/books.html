@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Table</title>
+</head>
+<body>
+
+<table>
+    <caption><b>Полный список книг</b></caption>
+    <tr>
+        <td>Id</td>
+        <th>Title</th>
+    </tr>
+    <tr th:each="book: ${books}">
+        <td th:text="${book.getId()}"></td>
+        <td th:text="${book.getTitle()}"></td>
+    </tr>
+</table>
+
+<style>
+    table {
+        border: 3px solid black;
+        border-collapse: collapse;
+        width: 50%;
+    }
+    td {
+        border: 3px solid black;
+    }
+    th {
+        border: 3px solid black;
+    }
+
+</style>
+
+</body>
+</html>
