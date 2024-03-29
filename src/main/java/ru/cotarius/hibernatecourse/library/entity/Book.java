@@ -3,6 +3,7 @@ package ru.cotarius.hibernatecourse.library.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Bean;
 
 @Entity
 @Table(name = "book")
@@ -18,9 +19,9 @@ public class Book {
     @Column(name = "title")
     private String title;
 
-    @OneToOne//(mappedBy = "book")
-    @JoinColumn(name = "id", referencedColumnName = "book_id")
-    private Issue issue;
+//    @OneToOne(mappedBy = "book")
+//   // @JoinColumn(name = "id", referencedColumnName = "book_id")
+//    private Issue issue;
 
     public Book(String title) {
         this.title = title;

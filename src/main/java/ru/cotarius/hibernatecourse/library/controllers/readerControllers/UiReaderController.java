@@ -21,7 +21,7 @@ public class UiReaderController {
     }
     @GetMapping("/all")
     public String findAll(Model model){
-        List<Reader> readers = readerService.finsAll();
+        List<Reader> readers = readerService.findAll();
         model.addAttribute("readers", readers);
         return "readers";
     }

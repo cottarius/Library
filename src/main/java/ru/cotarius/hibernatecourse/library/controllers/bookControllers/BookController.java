@@ -1,5 +1,6 @@
 package ru.cotarius.hibernatecourse.library.controllers.bookControllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,24 +13,42 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/books")
+@RequestMapping("/book")
 public class BookController {
-    private BookService bookService;
+    private final BookService bookService;
 
     @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Book> create(@RequestBody String title){
+    @Operation(summary = "save book to repository")
+    @PostMapping
+    public ResponseEntity<Book> save(@RequestBody String title) {
         log.info("Поступил запрос на создание книги: " + title);
-
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(bookService.createBook(title));
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return ResponseEntity.internalServerError().build();
         }
     }
 
+    @Operation(summary = "delete by id")
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id){
+        bookService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @Operation(summary = "get by id")
+    @GetMapping("{id}")
+    public ResponseEntity<Book> getById(@PathVariable long id){
+        return ResponseEntity.status(HttpStatus.OK).body(bookService.getById(id));
+    }
+
+    @Operation(summary = "get all books")
+    @GetMapping
+    public ResponseEntity<List<Book>> findAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(bookService.findAll());
+    }
 }

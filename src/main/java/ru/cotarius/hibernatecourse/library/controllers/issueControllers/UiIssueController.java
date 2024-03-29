@@ -15,7 +15,7 @@ import ru.cotarius.hibernatecourse.library.service.IssueService;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+//@Controller
 @RequestMapping("/issues")
 @Slf4j
 public class UiIssueController {
@@ -39,7 +39,7 @@ public class UiIssueController {
         Reader reader = new Reader();
         List<Issue> issues = issueService.findAll();
         for(Issue issue: issues){
-            if(issue.getReaderId() == id){
+            if(issue.getReader().getId() == id){
                 reader = issue.getReader();
                 books.add(issue.getBook());
             }

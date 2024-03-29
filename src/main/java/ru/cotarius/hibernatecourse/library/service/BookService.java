@@ -3,7 +3,9 @@ package ru.cotarius.hibernatecourse.library.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import ru.cotarius.hibernatecourse.library.entity.Book;
 import ru.cotarius.hibernatecourse.library.repository.BookRepository;
 
@@ -28,11 +30,16 @@ public class BookService {
     public Book getById(long id){
         return repository.getReferenceById(id);
     }
+
     public List<Book> findAll(){
         return repository.findAll();
     }
+
     public void delete(long id){
-        Book book = repository.getReferenceById(id);
+        Book book = repository.findById(id).orElse(null);
+        if (book == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no book with id " + id);
+        }
         repository.delete(book);
     }
 }
