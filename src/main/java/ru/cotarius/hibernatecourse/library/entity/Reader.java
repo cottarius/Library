@@ -3,6 +3,7 @@ package ru.cotarius.hibernatecourse.library.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Table(name = "reader")
 @Data
 @NoArgsConstructor
+
 public class Reader {
     @Id
     @Column(name = "id")

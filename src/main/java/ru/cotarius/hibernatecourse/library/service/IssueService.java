@@ -39,6 +39,9 @@ public class IssueService {
         this.readerRepository = readerRepository;
     }
 
+//    public List<Book> getAllBooksByReaderId(long id){
+//
+//    }
     public void delete(long id){
         Issue issue = issueRepository.findById(id).orElse(null);
         if (issue == null){

@@ -1,8 +1,12 @@
 package ru.cotarius.hibernatecourse.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -11,18 +15,23 @@ import java.time.LocalDate;
 @Table(name = "issue")
 @Data
 @NoArgsConstructor
-public class Issue implements Serializable {
+//@BatchSize(size = 5)
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Issue {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne//(mappedBy = "reader")
+//    @Fetch(FetchMode.JOIN)
+
+    @OneToOne()//(mappedBy = "reader")
     @JoinColumn(name = "reader_id")//, referencedColumnName = "id")//, insertable = false, updatable = false)
     private Reader reader;
 
-    @ManyToOne//(mappedBy = "book")
+
+    @ManyToOne()//(mappedBy = "book")
     @JoinColumn(name = "book_id")//, referencedColumnName = "id")//, insertable = false, updatable = false)
     private Book book;
 

@@ -3,12 +3,14 @@ package ru.cotarius.hibernatecourse.library.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
 import org.springframework.context.annotation.Bean;
 
 @Entity
 @Table(name = "book")
 @Data
 @NoArgsConstructor
+//@BatchSize(size = 5)
 public class Book {
 
     @Id
