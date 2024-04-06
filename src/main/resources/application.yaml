@@ -1,4 +1,10 @@
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/master
+
   application:
     name: library
     issue:
@@ -19,5 +25,6 @@ spring:
 
 #    hibernate:
 #      ddl-auto:  create
-
+server:
+  port: 8180
 
