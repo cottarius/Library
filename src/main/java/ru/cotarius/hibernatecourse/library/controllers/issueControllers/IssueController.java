@@ -1,5 +1,6 @@
 package ru.cotarius.hibernatecourse.library.controllers.issueControllers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/issue")
+@RequestMapping("/issues")
 public class IssueController {
     private final IssueService issueService;
 

@@ -15,8 +15,8 @@ import ru.cotarius.hibernatecourse.library.service.IssueService;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Controller
-@RequestMapping("/issues")
+@Controller
+@RequestMapping("/issue")
 @Slf4j
 public class UiIssueController {
     private IssueService issueService;
@@ -26,7 +26,7 @@ public class UiIssueController {
         this.issueService = issueService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public String findAll(Model model){
         List<Issue> issues = issueService.findAll();
         model.addAttribute("issues", issues);

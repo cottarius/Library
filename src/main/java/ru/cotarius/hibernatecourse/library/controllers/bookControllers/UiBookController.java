@@ -12,7 +12,7 @@ import ru.cotarius.hibernatecourse.library.service.BookService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/books")
+@RequestMapping("/book")
 public class UiBookController {
     private BookService bookService;
 
@@ -21,7 +21,7 @@ public class UiBookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public String findAll(Model model){
         List<Book> books = bookService.findAll();
         model.addAttribute("books", books);

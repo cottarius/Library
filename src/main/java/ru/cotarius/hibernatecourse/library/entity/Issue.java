@@ -1,5 +1,6 @@
 package ru.cotarius.hibernatecourse.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -26,13 +27,15 @@ public class Issue {
 
 //    @Fetch(FetchMode.JOIN)
 
-    @OneToOne()//(mappedBy = "reader")
-    @JoinColumn(name = "reader_id")//, referencedColumnName = "id")//, insertable = false, updatable = false)
+    @OneToOne(fetch = FetchType.LAZY)//(mappedBy = "reader")
+    @JoinColumn(name = "reader_id")//, referencedColumnName = "id")
+    @JsonIgnore
     private Reader reader;
 
 
-    @ManyToOne()//(mappedBy = "book")
-    @JoinColumn(name = "book_id")//, referencedColumnName = "id")//, insertable = false, updatable = false)
+    @OneToOne(fetch = FetchType.LAZY)//(mappedBy = "book")
+    @JoinColumn(name = "book_id")//, referencedColumnName = "id")
+    @JsonIgnore
     private Book book;
 
     @Column(name = "issued_at")

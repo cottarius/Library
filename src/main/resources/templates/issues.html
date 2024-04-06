@@ -17,8 +17,8 @@
     </tr>
     <tr th:each="issue: ${issues}">
         <td th:text="${issue.getId()}"></td>
-        <td th:text="${issue.getReaderId()}"></td>
-        <td th:text="${issue.getBookId()}"></td>
+        <td th:text="${issue.getReader().getId()}"></td>
+        <td th:text="${issue.getBook().getId()}"></td>
         <td th:text="${issue.getIssuedAt()}"></td>
         <td th:text="${issue.getReturnedAt()}"></td>
     </tr>

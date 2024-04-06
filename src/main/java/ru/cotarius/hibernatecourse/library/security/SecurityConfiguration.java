@@ -14,10 +14,11 @@ public class SecurityConfiguration {
 
         return httpSecurity
                 .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("user/**").hasAnyAuthority("user", "admin")
-                        .requestMatchers("admin/**").hasAuthority("admin")
-                        .requestMatchers("auth/**").authenticated()
-                        .requestMatchers("any").permitAll()
+                        .requestMatchers("reader*/**").hasAnyAuthority("user", "admin")
+                        .requestMatchers("book*/**").permitAll()
+                        .requestMatchers("issue*/**").hasAuthority("admin")
+                        .requestMatchers("swagger-ui/**").hasAuthority("admin")
+                        .requestMatchers("v3/**").hasAuthority("admin")
                         .anyRequest().denyAll()
                 )
                 .formLogin(Customizer.withDefaults())

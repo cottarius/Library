@@ -11,7 +11,7 @@ import ru.cotarius.hibernatecourse.library.service.ReaderService;
 import java.util.List;
 
 @Controller
-@RequestMapping("readers")
+@RequestMapping("/reader")
 public class UiReaderController {
     private ReaderService readerService;
 
@@ -19,7 +19,8 @@ public class UiReaderController {
     public UiReaderController(ReaderService readerService) {
         this.readerService = readerService;
     }
-    @GetMapping("/all")
+
+    @GetMapping()
     public String findAll(Model model){
         List<Reader> readers = readerService.findAll();
         model.addAttribute("readers", readers);
