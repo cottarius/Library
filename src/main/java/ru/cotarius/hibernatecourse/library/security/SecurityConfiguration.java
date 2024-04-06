@@ -14,8 +14,8 @@ public class SecurityConfiguration {
 
         return httpSecurity
                 .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("reader*/**").hasAnyAuthority("user", "admin")
-                        .requestMatchers("book*/**").permitAll()
+                        .requestMatchers("reader*/**").hasAuthority("admin")
+                        .requestMatchers("book*/**").authenticated()
                         .requestMatchers("issue*/**").hasAuthority("admin")
                         .requestMatchers("swagger-ui/**").hasAuthority("admin")
                         .requestMatchers("v3/**").hasAuthority("admin")
