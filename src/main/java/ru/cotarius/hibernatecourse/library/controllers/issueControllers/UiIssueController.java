@@ -13,7 +13,10 @@ import ru.cotarius.hibernatecourse.library.entity.Reader;
 import ru.cotarius.hibernatecourse.library.service.IssueService;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/issue")
@@ -34,16 +37,11 @@ public class UiIssueController {
     }
 
     @GetMapping("/reader/{id}")
-    public String getAllBooksFromReaderByReaderId(@PathVariable Long id, Model model){
-        List<Book> books = new ArrayList<>();
-        Reader reader = new Reader();
-        List<Issue> issues = issueService.findAll();
-        for(Issue issue: issues){
-            if(issue.getReader().getId() == id){
-                reader = issue.getReader();
-                books.add(issue.getBook());
-            }
-        }
+    public String getBooksFromReaderById(@PathVariable Long id, Model model){
+        Map<String, List<Book>> booksByReader = issueService.findBooksByReaderId(id);
+        Map.Entry<String, List<Book>> entry = booksByReader.entrySet().iterator().next();
+        String reader = entry.getKey();
+        List<Book> books = entry.getValue().stream().sorted(Comparator.comparing(Book::getId)).collect(Collectors.toList());
         model.addAttribute("reader", reader);
         model.addAttribute("books", books);
         return "books-from-reader";

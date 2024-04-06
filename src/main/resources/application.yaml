@@ -17,6 +17,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
 
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
 #    hibernate:
 #      ddl-auto:  create
 

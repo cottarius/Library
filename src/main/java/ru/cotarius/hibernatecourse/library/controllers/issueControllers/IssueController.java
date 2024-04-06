@@ -1,6 +1,7 @@
 package ru.cotarius.hibernatecourse.library.controllers.issueControllers;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -10,10 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.cotarius.hibernatecourse.library.controllers.dto.IssueRequest;
 import ru.cotarius.hibernatecourse.library.customexceptions.BookHasBeenReturnedException;
+import ru.cotarius.hibernatecourse.library.entity.Book;
 import ru.cotarius.hibernatecourse.library.entity.Issue;
+import ru.cotarius.hibernatecourse.library.entity.Reader;
 import ru.cotarius.hibernatecourse.library.service.IssueService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -68,5 +73,14 @@ public class IssueController {
     public ResponseEntity<Void> delete(@PathVariable long id){
         issueService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("reader/{id}")
+    public ResponseEntity<Map<String, List<Book>>> getAllBooksFromReaderByReaderId(@PathVariable Long id){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(issueService.findBooksByReaderId(id));
+        } catch (RuntimeException e){
+            return ResponseEntity.internalServerError().build();
+        }
     }
 }

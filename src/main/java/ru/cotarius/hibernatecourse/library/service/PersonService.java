@@ -31,20 +31,4 @@ public class PersonService {
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Нет такого пользователя с login " + login));
     }
 
-//    @EventListener(ContextRefreshedEvent.class)
-//    private void createStartData(){
-//        Person person1 = new Person();
-//        person1.setLogin("admin");
-//        person1.setPassword("admin");
-//        person1.setRole("admin");
-//
-//        Person person2 = new Person();
-//        person2.setLogin("user");
-//        person2.setPassword("user");
-//        person2.setRole("user");
-//
-//        save(person1);
-//        save(person2);
-//    }
-
 }

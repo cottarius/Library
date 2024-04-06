@@ -24,10 +24,6 @@ public class Reader {
     @Column(name = "last_name")
     private String lastName;
 
-//    @OneToOne //(mappedBy = "reader")
-//    @JoinColumn(name = "id", referencedColumnName = "reader_id")
-//    private Issue issue;
-
     public Reader(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;

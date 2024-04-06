@@ -1,5 +1,8 @@
 package ru.cotarius.hibernatecourse.library.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +21,11 @@ import ru.cotarius.hibernatecourse.library.repository.IssueRepository;
 import ru.cotarius.hibernatecourse.library.repository.ReaderRepository;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class IssueService {
     private final IssueRepository issueRepository;
     private final BookRepository bookRepository;
@@ -32,16 +35,6 @@ public class IssueService {
     @Value("${spring.application.issue.max_allowed-books:3}")
     private int MAX_ALLOWED_BOOKS;
 
-    @Autowired
-    public IssueService(IssueRepository issueRepository, BookRepository bookRepository, ReaderRepository readerRepository) {
-        this.issueRepository = issueRepository;
-        this.bookRepository = bookRepository;
-        this.readerRepository = readerRepository;
-    }
-
-//    public List<Book> getAllBooksByReaderId(long id){
-//
-//    }
     public void delete(long id){
         Issue issue = issueRepository.findById(id).orElse(null);
         if (issue == null){
@@ -124,4 +117,22 @@ public class IssueService {
         }
         return true;
     }
+
+    public Map<String, List<Book>> findBooksByReaderId(long readerId) {
+        Map<String, List<Book>> map = new HashMap<>();
+        List<Book> books = new ArrayList<>();
+//        Reader reader = readerRepository.findById(readerId).orElse(null);
+        List<Issue> issues = issueRepository.findAll();
+        for(Issue issue: issues){
+            if(issue.getReader().getId() == readerId){
+                books.add(issue.getBook());
+            }
+        }
+        String reader = readerRepository.getReferenceById(readerId).getFirstName() +
+                " " +
+                readerRepository.getReferenceById(readerId).getLastName();
+        map.put(reader, books);
+        return map;
+    }
+
 }

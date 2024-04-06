@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 @Table(name = "book")
 @Data
 @NoArgsConstructor
-//@BatchSize(size = 5)
 public class Book {
 
     @Id
@@ -20,10 +19,6 @@ public class Book {
 
     @Column(name = "title")
     private String title;
-
-//    @OneToOne(mappedBy = "book")
-//   // @JoinColumn(name = "id", referencedColumnName = "book_id")
-//    private Issue issue;
 
     public Book(String title) {
         this.title = title;

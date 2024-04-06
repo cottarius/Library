@@ -13,14 +13,9 @@ import java.util.List;
 
 @Service
 @Slf4j
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class BookService {
-    private BookRepository repository;
-
-    @Autowired
-    public BookService(BookRepository repository) {
-        this.repository = repository;
-    }
+    private final BookRepository repository;
 
     public Book createBook(String name){
         Book book = new Book(name);

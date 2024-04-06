@@ -6,14 +6,13 @@
 </head>
 <body>
 
-<h2 style="display:inline" th:text="${reader.getFirstName()&#32;}"></h2>
-<h2 style="display:inline" th:text="${reader.getLastName()}"></h2>
+<h2 style="display:inline" th:text="${reader}"></h2>
 
 <br>
 <br>
 
 <table>
-    <caption><b>Книги у читателя</b></caption>
+    <caption><b>Полный список книг</b></caption>
     <tr>
         <td>Id</td>
         <th>Title</th>
@@ -30,9 +29,11 @@
         border-collapse: collapse;
         width: 50%;
     }
+
     td {
         border: 3px solid black;
     }
+
     th {
         border: 3px solid black;
     }
