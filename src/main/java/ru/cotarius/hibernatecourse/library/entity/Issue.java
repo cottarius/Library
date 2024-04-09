@@ -25,12 +25,12 @@ public class Issue{
 
     @OneToOne(fetch = FetchType.LAZY)//(mappedBy = "reader")
     @JoinColumn(name = "reader_id")//, referencedColumnName = "id")
-//    @JsonIgnore
+    @JsonIgnore
     private Reader reader;
 
     @OneToOne(fetch = FetchType.LAZY)//(mappedBy = "book")
     @JoinColumn(name = "book_id")//, referencedColumnName = "id")
-//    @JsonIgnore
+    @JsonIgnore
     private Book book;
 
     @Column(name = "issued_at")
