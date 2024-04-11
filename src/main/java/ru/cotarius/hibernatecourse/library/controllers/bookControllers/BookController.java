@@ -25,7 +25,7 @@ public class BookController {
     @Operation(summary = "save book to repository")
     @PostMapping
     public ResponseEntity<Book> save(@RequestBody String title) {
-        log.info("Поступил запрос на создание книги: " + title);
+        log.info("Поступил запрос на создание книги: {}", title);
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(bookService.createBook(title));
         } catch (RuntimeException e) {

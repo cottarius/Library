@@ -1,4 +1,4 @@
-package ru.cotarius.hibernatecourse.library.controllers;
+package ru.cotarius.hibernatecourse.library.controllers.personController;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

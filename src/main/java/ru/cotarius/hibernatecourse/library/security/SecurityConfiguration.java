@@ -16,12 +16,12 @@ public class SecurityConfiguration {
 
         return httpSecurity
                 .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("reader*/**").hasAuthority("admin")
-                        .requestMatchers("book*/**").authenticated()
-                        .requestMatchers("issue*/**").hasAuthority("admin")
+                        .requestMatchers("reader/**").hasAuthority("admin")
+                        .requestMatchers("book/**").authenticated()
+                        .requestMatchers("issue/**").hasAuthority("admin")
                         .requestMatchers("swagger-ui/**").hasAuthority("admin")
                         .requestMatchers("v3/**").hasAuthority("admin")
-                        .anyRequest().denyAll()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
