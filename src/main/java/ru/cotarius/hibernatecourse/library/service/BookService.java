@@ -23,7 +23,7 @@ public class BookService {
         return book;
     }
     public Book getById(long id){
-        return repository.getReferenceById(id);
+        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public List<Book> findAll(){
@@ -35,6 +35,9 @@ public class BookService {
         if (book == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no book with id " + id);
         }
-        repository.delete(book);
+        repository.deleteById(id);
+    }
+    public Book findByTitle(String title){
+        return repository.findByTitle(title);
     }
 }

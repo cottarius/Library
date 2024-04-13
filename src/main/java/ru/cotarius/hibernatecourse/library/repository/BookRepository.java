@@ -6,5 +6,6 @@ import ru.cotarius.hibernatecourse.library.entity.Book;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long>{
+    Book findByTitle(String name);
 
 }

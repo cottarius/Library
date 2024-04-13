@@ -46,7 +46,7 @@ public class ReaderController {
     @PostMapping
     public ResponseEntity<Reader> create(@RequestBody ReaderRequest readerRequest) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).
+            return ResponseEntity.status(HttpStatus.CREATED).
                     body(readerService.create(readerRequest));
         } catch (RuntimeException e) {
             return ResponseEntity.internalServerError().build();
