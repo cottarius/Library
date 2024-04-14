@@ -23,4 +23,13 @@ spring:
 #    hibernate:
 #      ddl-auto:  create
 
+management:
+  endpoint:
+    env:
+      show-values: always
+  endpoints:
+    web:
+      exposure:
+        include: env, prometheus, health, info, metric
+
 

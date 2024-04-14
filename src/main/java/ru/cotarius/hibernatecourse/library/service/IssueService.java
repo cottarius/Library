@@ -2,6 +2,7 @@ package ru.cotarius.hibernatecourse.library.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,7 @@ public class IssueService {
     public void delete(long id){
         Issue issue = issueRepository.findById(id).orElse(null);
         if (issue == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new EntityNotFoundException();
         }
         issueRepository.delete(issue);
     }
@@ -96,7 +97,7 @@ public class IssueService {
 
     private static void ifIssueNull(Issue issue, long id) {
         if (issue == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found issue with id = " + id);
+            throw new EntityNotFoundException();
         }
     }
 
