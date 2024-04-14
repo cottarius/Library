@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.cotarius.hibernatecourse.library.entity.Book;
 import ru.cotarius.hibernatecourse.library.entity.Issue;
-import ru.cotarius.hibernatecourse.library.entity.Reader;
 import ru.cotarius.hibernatecourse.library.service.IssueService;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +20,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/issue")
 @Slf4j
 public class UiIssueController {
-    private IssueService issueService;
+    private final IssueService issueService;
 
     @Autowired
     public UiIssueController(IssueService issueService) {

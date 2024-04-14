@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @Slf4j
 public class ReaderService {
-    private ReaderRepository repository;
+    private final ReaderRepository repository;
 
     @Autowired
     public ReaderService(ReaderRepository repository) {

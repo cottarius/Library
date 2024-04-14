@@ -1,7 +1,6 @@
 package ru.cotarius.hibernatecourse.library.security;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Comment;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/reader")
 public class UiReaderController {
-    private ReaderService readerService;
+    private final ReaderService readerService;
 
     @Autowired
     public UiReaderController(ReaderService readerService) {
