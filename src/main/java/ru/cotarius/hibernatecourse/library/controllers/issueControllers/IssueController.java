@@ -84,13 +84,11 @@ public class IssueController {
     @GetMapping("{id}")
     public ResponseEntity<Issue> getById(@PathVariable long id){
         try {
-            issueService.findById(id);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.status(HttpStatus.OK).body(issueService.findById(id));
         } catch (EntityNotFoundException e){
             showFailureIssuesCounter.incrementAndGet();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-
     }
 
     @Operation(summary = "delete by id")
