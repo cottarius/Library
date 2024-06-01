@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+  app:
+    image: 'cotarius/library:0.0.1'
+    build:
+      context: .
+    container_name: library
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.1.74:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+#    networks:
+#      mynetwork:
+#        ipv4_address: 172.20.0.6
+
+  db:
+    image: 'postgres:latest'
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/cotarius/db/library:/var/lib/postgresql/data
+#    networks:
+#      mynetwork:
+#        ipv4_address: 172.20.0.5
+
+#networks:
+#  mynetwork:
+#    ipam:
+#      config:
+#        - subnet: 172.20.0.0/24
+
+

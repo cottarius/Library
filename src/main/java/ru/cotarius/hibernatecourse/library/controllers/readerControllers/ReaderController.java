@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/readers")
 public class ReaderController {
-    private ReaderService readerService;
+    private final ReaderService readerService;
 
     @Autowired
     public ReaderController(ReaderService readerService) {

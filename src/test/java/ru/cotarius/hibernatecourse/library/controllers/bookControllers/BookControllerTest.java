@@ -1,17 +1,13 @@
 package ru.cotarius.hibernatecourse.library.controllers.bookControllers;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import ru.cotarius.hibernatecourse.library.entity.Book;
-import ru.cotarius.hibernatecourse.library.repository.BookRepository;
 import ru.cotarius.hibernatecourse.library.service.BookService;
 
 import java.util.List;
@@ -27,31 +23,17 @@ class BookControllerTest {
     private WebTestClient webTestClient;
 
     @Autowired
-    BookRepository bookRepository;
-
-    @Autowired
     BookService bookService;
-
-    @BeforeEach
-    void setUp() {
-        bookService.createBook("Властелин Колец");
-        bookService.createBook("Хоббит");
-
-        webTestClient = WebTestClient.bindToController(new BookController(bookService))
-                .configureClient()
-                .baseUrl("/books")
-                .build();
-    }
-
-
 
     @Test
     void delete() {
-        long id = 1;
+        String bookName = "Война и Мир";
+        bookService.createBook(bookName);
+        long id = bookService.findAll().stream().filter(b -> b.getTitle().equals(bookName)).findFirst().get().getId();
 //        bookService.delete(id);
 
         Book deleteBook = webTestClient.delete()
-                .uri("/" + id)
+                .uri("books/" + id)
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Book.class)
@@ -64,10 +46,9 @@ class BookControllerTest {
     @Test
     void testSave() {
         String name = "Война и Мир";
-//        Book book = new Book(name);
 
         Book savedBook = webTestClient.post()
-//                .uri("/books/")
+                .uri("/books")
                 .bodyValue(name)
                 .exchange()
                 .expectStatus().isCreated()
@@ -85,7 +66,7 @@ class BookControllerTest {
         bookService.createBook(name);
         long id = bookService.findByTitle(name).getId();
         Book findedBook = webTestClient.get()
-                .uri("/" + id)
+                .uri("books/" + id)
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Book.class)
@@ -99,9 +80,12 @@ class BookControllerTest {
 
     @Test
     void testFindAll() {
+        bookService.createBook("Властелин Колец");
+        bookService.createBook("Хоббит");
         List<Book> bookList = bookService.findAll();
 
         List<Book> responseBody = webTestClient.get()
+                .uri("books")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(new ParameterizedTypeReference<List<Book>>() {
