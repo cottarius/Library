@@ -4,6 +4,11 @@ spring:
     issue:
       max_allowed-books: 3
 
+  kafka:
+    producer:
+      bootstrap-servers: "127.0.0.1:9092"
+      client-id: "demo-producer"
+
   datasource:
     url: jdbc:postgresql://localhost:5432/library
     username: postgres
