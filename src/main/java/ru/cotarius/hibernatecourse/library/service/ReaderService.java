@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @Slf4j
 public class ReaderService {
-    private ReaderRepository repository;
+    private final ReaderRepository repository;
 
     @Autowired
     public ReaderService(ReaderRepository repository) {
@@ -23,7 +23,7 @@ public class ReaderService {
 
     public Reader create(ReaderRequest readerRequest){
         Reader reader = new Reader(readerRequest.getFirstName(), readerRequest.getLastName());
-        return repository.save(reader);
+        return repository.saveAndFlush(reader);
     }
     public List<Reader> findAll(){
         return repository.findAll();

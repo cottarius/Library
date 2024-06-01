@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: "create-table-issue"
+      author: "cotarius"
+      changes:
+        - createTable:
+            tableName: issue
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: reader_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: issued_at
+                  type: Date
+              - column:
+                  name: returned_at
+                  type: Date

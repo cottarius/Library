@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: "insert-into-book"
+      author: "cotarius"
+      changes:
+        - insert:
+            tableName: book
+            columns:
+              - column:
+                  name: title
+                  value: Мастер и Маргарита
+        - insert:
+            tableName: book
+            columns:
+              - column:
+                  name: title
+                  value: Молодая Гвардия
+        - insert:
+            tableName: book
+            columns:
+              - column:
+                  name: title
+                  value: Поднятая Целина
+        - insert:
+            tableName: book
+            columns:
+              - column:
+                  name: title
+                  value: Тихий Дон
+        - insert:
+            tableName: book
+            columns:
+              - column:
+                  name: title
+                  value: Идиот

@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: "create-table-reader"
+      author: "cotarius"
+      changes:
+        - createTable:
+            tableName: reader
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: firstname
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastname
+                  type: varchar(255)
+                  constraints:
+                    nullable: false

@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: "insert-into-reader"
+      author: "cotarius"
+      changes:
+        - insert:
+            tableName: reader
+            columns:
+              - column:
+                  name: firstname
+                  value: Олег
+              - column:
+                  name: lastname
+                  value: Меньшиков
+        - insert:
+            tableName: reader
+            columns:
+              - column:
+                  name: firstname
+                  value: Владимир
+              - column:
+                  name: lastname
+                  value: Машков
+        - insert:
+            tableName: reader
+            columns:
+              - column:
+                  name: firstname
+                  value: Константин
+              - column:
+                  name: lastname
+                  value: Хабенский
+        - insert:
+            tableName: reader
+            columns:
+              - column:
+                  name: firstname
+                  value: Светлана
+              - column:
+                  name: lastname
+                  value: Ходченкова
